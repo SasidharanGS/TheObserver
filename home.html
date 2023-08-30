@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="team project, news website">
+    <meta name="author" content="Team7">
+    <link rel="stylesheet" href="./styles.css">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+</head>
+<script src="./API.js"></script>
+<script src="./response.js"></script>
+<script src="./mode.js"></script>
+<script>
+    Load();
+</script>
+<body>
+    <!-- top label to come back to top on click -->
+    <label for="top"></label> 
+    <!-- the title of the page -->
+    <div id="title">
+        <span style="color: black; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">The Observer</span>
+    </div>
+
+    <div id="sign" style="text-align: right; padding-top: 5px;">
+        <a href="#"> <button class="sign-btn" > Sign in </button></a>
+        <a href="#"> <button class="sign-btn" > Sign up </button></a></a>
+        <button id="mode-btn" onclick="darkLight()" ><i id="mode" class="fas fa-moon"></i></button>
+    </div>
+    <hr>
+
+    <!-- navigation bar, buttons -->
+    <div id="nav">
+        <div id="add">
+            <div>
+                <button id="mode-btn_" onclick="darkLight()" ><i id="mode" class="fas fa-moon"></i></button>
+            </div>
+            <div id="menu">
+                <button onclick="Drop()" class="mode-bt"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+        <ul id="drop" style="list-style-type:none;">
+            <li><div onclick="change(this); Drop();" class="navbt">Home</div></li>
+            <li><div onclick="change(this); Drop();" class="navbt">Automobile</div></li>
+            <li><div onclick="change(this); Drop();" class="navbt">Business</div></li>
+            <li><div onclick="change(this); Drop();" class="navbt">Education</div></li>
+            <li><div onclick="change(this); Drop();" class="navbt">Entertainment</div></li>
+            <li><div onclick="change(this); Drop();" class="navbt">Hatke</div></li>
+            <li><div onclick="change(this); Drop();" class="navbt">World</div></li>
+            <li><div onclick="change(this); Drop();" class="navbt">Politics</div></li>
+            <li><div onclick="change(this); Drop();" class="navbt">Science</div></li>
+            <li><div onclick="change(this); Drop();" class="navbt">Sports</div></li>
+            <li><div onclick="change(this); Drop();" class="navbt">Technology</div></li>
+        </ul>
+        <div id="realnav">
+            <button onclick="change(this)" class="navbt">Home</button>
+            <button onclick="change(this)" class="navbt">Automobile</button>
+            <button onclick="change(this)" class="navbt">Business</button>
+            <button onclick="change(this)" class="navbt">Education</button>
+            <button onclick="change(this)" class="navbt">Entertainment</button>
+            <button onclick="change(this)" class="navbt">Hatke</button>
+            <button onclick="change(this)" class="navbt">World</button>
+            <button onclick="change(this)" class="navbt">Politics</button>
+            <button onclick="change(this)" class="navbt">Science</button>
+            <button onclick="change(this)" class="navbt">Sports</button>
+            <button onclick="change(this)" class="navbt">Technology</button>
+        </div>
+        
+    </div>
+    
+    <div class="feed">
+        <p id="cat">Today's headlines</p>
+        <div id="news">
+            
+        </div>
+        <div id="more">
+            <p id="read-more">Read more</p>
+            <div onclick="loadMore()" >
+                <img src="https://img.icons8.com/ios-filled/50/000000/down-squared--v1.png"/>
+            </div>
+        </div>
+    </div>
+    
+    
+        
+<!-- end of effective feed -->
+
+    <br><br>
+<!-- footer -->
+    <div id="footer">
+        <span style="font-weight: bold;"> Connect with us: </span>
+        <a href="https://twitter.com" target="_blank"><img src="./images/twitter.png" alt="twitter.jpg" width="35px"></a>
+        <a href="https://en-gb.facebook.com/login/web/" target="_blank"><img src="./images/facebook.png" alt="facebook.jpg" width="40px"></a>
+    </div>
+    <br>
+<!-- more tags -->
+    <ul style="list-style-type: none;">
+        <li>
+            <form name="myform" onsubmit="validate();return false;">
+                <input type="text" name="email">
+                <input type="submit" value="Subscribe">
+            </form>
+        </li>
+        <li>
+            <form name="comment" onsubmit="checkempty();return false;">
+                <p>Leave a comment: </p>
+                <textarea name="comment" cols="30%" id="comment" rows="10"></textarea>
+                <input type="submit" value="Post">
+            </form>
+        </li>
+    </ul>
+<!-- link to top -->
+    <div id="to-top">
+    <a href="#top"><img id="top-btn" src="./images/backtotop.png" width="50px" alt=""></a>
+    </div>
+    
+<!-- onclick function(newsletter subsribtion response) -->
+<script>
+    function validate()
+    {   
+        var emailID = document.myform.email.value;
+        atpos = emailID.indexOf("@");
+        dotpos = emailID.lastIndexOf(".");
+        if (atpos < 1 || (dotpos - atpos) < 2)
+        {
+            alert("Please enter a valid email ID.");
+        }
+        else if (hasWhiteSpace(emailID))
+        {
+            alert("Please check your email ID for whitespaces.");
+        }
+        else
+        {
+            confirm("Thanks for subscribing to our newsletters. Would you also like to get notifications?")
+        }
+    }
+    function hasWhiteSpace(s) {
+        return s.indexOf(' ') >= 0;
+    }
+    function checkempty()
+    {
+        var comment = document.comment.comment.value;
+        if (comment == "")
+        {
+            alert("You cannot leave a blank comment.");
+        }
+        else
+        {
+            alert("You can't comment right now as our servers are down.")
+        }
+    }
+</script>
+</body>
+<script src="./index.js"></script>
+</html>
